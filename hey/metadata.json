@@ -1,0 +1,5 @@
+{
+  "name": "Focus Flow",
+  "description": "A minimal concentration timer with circular progress tracking to help you stay productive.",
+  "requestFramePermissions": []
+}
