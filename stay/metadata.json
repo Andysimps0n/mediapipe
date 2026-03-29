@@ -1,0 +1,5 @@
+{
+  "name": "Click Interval Timer",
+  "description": "Measures the time in milliseconds between consecutive button clicks.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,480 @@
+@import "tailwindcss";
+
+/* Base Layout */
+.app-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background Decoration */
+.bg-decoration {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-glow-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background-color: rgba(249, 115, 22, 0.05);
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.bg-grid-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Content Container */
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:2rem;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.header-section {
+  text-align: center;
+}
+
+.header-title {
+  font-size: 0.75rem;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: rgba(249, 115, 22, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+  color: #6b7280;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Main Button */
+.interaction-area {
+  position: relative;
+}
+
+.trigger-button {
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.state-stopped {
+  background-color: #f97316;
+  color: white;
+  box-shadow: 0 0 80px rgba(249, 115, 22, 0.2);
+}
+
+.state-active {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.05);
+}
+
+.state-active:hover {
+  box-shadow: 0 0 80px rgba(255, 255, 255, 0.1);
+}
+
+.button-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, transparent, rgba(0,0,0,0.05));
+}
+
+.button-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-cursor {
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: transform 0.3s ease;
+}
+
+.icon-rotated {
+  transform: rotate(45deg) scale(1.1);
+}
+
+.button-label {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+
+.rotating-border {
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+/* Visual Effects */
+.pulse-effect {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid;
+  pointer-events: none;
+}
+
+.pulse-orange { border-color: #f97316; }
+.pulse-white { border-color: rgba(255, 255, 255, 0.4); }
+
+/* Timer Display */
+.timer-display-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.timer-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(249, 115, 22, 0.6);
+  margin-bottom: 1rem;
+}
+
+.icon-timer { width: 0.75rem; height: 0.75rem; }
+
+.label-text {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: bold;
+}
+
+.timer-value-wrapper {
+  position: relative;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-number {
+  font-family: monospace;
+  font-size: 6rem;
+  font-weight: 200;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit-ms {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-left: 0.5rem;
+  font-family: sans-serif;
+  vertical-align: baseline;
+}
+
+.status-message-height {
+  margin-top: 1.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+}
+
+.locked-notification {
+  font-size: 10px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.locked-text { color: rgba(249, 115, 22, 0.4); }
+
+/* Stats Grid */
+.stats-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+}
+
+.stat-card { text-align: center; }
+
+.stat-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-family: monospace;
+  font-size: 1.125rem;
+}
+
+.reset-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-button {
+  padding: 0.75rem;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.reset-button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.icon-reset {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.reset-button:hover .icon-reset {
+  transform: rotate(180deg);
+}
+
+.active-orange { color: #f97316; }
+
+.status-text { transition: color 0.3s; }
+.text-stopped { color: #f97316; }
+.text-running { color: #22c55e; }
+.text-ready { color: #374151; }
+
+/* Footer */
+.app-footer {
+  position: fixed;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.bg-orange { background-color: #f97316; }
+.bg-green { background-color: #22c55e; }
+
+.footer-text {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #374151;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+
+/* 깜빡임 애니메이션 (Blinking Effect) */
+.blink-animation {
+  animation: blink 0.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.95); }
+}
+
+/* 카운트다운 전용 스타일 */
+.countdown-active {
+  color: #f97316; /* 오렌지색으로 강조 */
+  font-weight: 800;
+}
+
+/* 대기 중 버튼 스피너 (선택 사항) */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 상태 텍스트 색상 추가 */
+.text-waiting { color: #f97316; }
+
+
+.box {
+    width: 100px;
+    height: 100px;  
+    background-color: red;
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-content {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* REFACTORED BOX STYLE */
+.webcam-card {
+  width: 320px;
+  height: 240px;
+  background-color: #1a1a1a;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.webcam-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* Mirror view */
+}
+
+.webcam-video.drowsy {
+  filter: sepia(1) saturate(5) hue-rotate(-50deg);
+  outline: 4px solid #ef4444;
+  outline-offset: -4px;
+}
+
+.canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+
+.alert-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(239, 68, 68, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.alert-text {
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  animation: pulse 0.5s infinite alternate;
+}
+
+.loading-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #4b5563;
+  font-size: 0.875rem;
+}
+
+/* Timer & UI Styles */
+.timer-number {
+  font-size: 4rem;
+  font-weight: 200;
+  font-family: monospace;
+}
+
+.countdown-active { color: #f97316; }
+
+.video-toggle-btn {
+  position: absolute;
+  bottom: -40px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.video-toggle-btn:hover { color: white; }
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+/* Include existing background and button styles from previous context... */
